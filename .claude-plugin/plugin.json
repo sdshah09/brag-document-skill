@@ -1,0 +1,13 @@
+{
+  "name": "brag-document",
+  "version": "0.1.0",
+  "description": "Help users build and maintain a brag document — a running record of accomplishments for perf reviews, promotions, and self-reflection.",
+  "author": {
+    "name": "Shaswat Shah",
+    "url": "https://github.com/sdshah09"
+  },
+  "homepage": "https://github.com/sdshah09/brag-document-skill",
+  "repository": "https://github.com/sdshah09/brag-document-skill",
+  "license": "MIT",
+  "keywords": ["brag-document", "career", "performance-review", "promotion", "self-reflection"]
+}

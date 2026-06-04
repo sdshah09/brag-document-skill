@@ -1,6 +1,6 @@
 # brag-document
 
-A reusable **brag document** skill — a running record of your accomplishments used for performance reviews, promotions, and self-reflection. Works in Claude Code, Cursor, and Codex CLI.
+A reusable **brag document** skill — a running record of your accomplishments used for performance reviews, promotions, and self-reflection. Works in every major agentic coding tool.
 
 Inspired by Julia Evans' essay *"Get your work recognized: write a brag document."*
 
@@ -23,31 +23,40 @@ It guides you through:
 - Spotting themes and reflecting on direction
 - Preparing to share with a manager or reviewers
 
-## Install (any tool — recommended)
+## Install (any tool)
 
 ```bash
 npx brag-document-skill
 ```
 
-The installer auto-detects your tool and writes the skill to the right place. Force a target with flags:
+You'll be shown a menu of every supported tool, marked `(detected)` if found on your machine. Pick one, `a` for all detected, or `A` for all known.
+
+Skip the prompt with flags:
 
 ```bash
-npx brag-document-skill --tool claude-code --scope global
-npx brag-document-skill --tool cursor      --scope project
-npx brag-document-skill --tool codex       --scope global
+npx brag-document-skill --tool claude-code              --scope global
+npx brag-document-skill --tool cursor                   --scope project
+npx brag-document-skill --tool claude-code,cursor,codex --scope global
 ```
 
-| Tool        | Where it lands (global)                          | Format                              |
-|-------------|--------------------------------------------------|-------------------------------------|
-| Claude Code | `~/.claude/skills/brag-document/SKILL.md`        | Native SKILL.md                     |
-| Cursor      | `~/.cursor/rules/brag-document.mdc`              | Cursor rule (`.mdc`)                |
-| Codex CLI   | `~/.codex/AGENTS.md` (appended if exists)        | AGENTS.md section                   |
+## Supported tools
 
-`--scope project` writes into the current directory instead (`.claude/`, `.cursor/`, `./AGENTS.md`).
+| Tool                  | Install mode     | Global location                                              | Project location                              |
+|-----------------------|------------------|--------------------------------------------------------------|-----------------------------------------------|
+| Claude Code           | Native skill     | `~/.claude/skills/brag-document/SKILL.md`                    | `.claude/skills/brag-document/SKILL.md`       |
+| Cursor                | Native skill     | `~/.cursor/skills-cursor/brag-document/SKILL.md`             | `.cursor/skills-cursor/brag-document/SKILL.md`|
+| Codex CLI             | Native skill     | `~/.codex/skills/brag-document/SKILL.md`                     | `.codex/skills/brag-document/SKILL.md`        |
+| Gemini CLI            | Appended block   | `~/.gemini/GEMINI.md`                                        | `./GEMINI.md`                                 |
+| Antigravity (Google)  | Appended block   | `~/.gemini/GEMINI.md` (same as Gemini)                       | `./GEMINI.md`                                 |
+| Windsurf              | Appended block   | `~/.codeium/windsurf/memories/global_rules.md`               | `./.windsurfrules`                            |
+| GitHub Copilot        | Appended block   | *(global not supported — IDE-config based)*                  | `.github/copilot-instructions.md`             |
+| Goose (Block)         | Appended block   | `~/.config/goose/.goosehints`                                | `./.goosehints`                               |
 
-## Install (Claude Code plugin)
+Appended blocks are wrapped in `<!-- BEGIN brag-document skill -->` / `<!-- END brag-document skill -->` markers — re-running the installer replaces the block cleanly, no duplicates.
 
-If you'd rather install as a Claude Code plugin (auto-updates, manageable via `/plugin`):
+## Install (Claude Code plugin alternative)
+
+If you'd rather install as a Claude Code plugin (manageable via `/plugin`):
 
 ```
 /plugin marketplace add sdshah09/brag-document-skill

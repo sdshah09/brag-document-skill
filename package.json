@@ -1,7 +1,7 @@
 {
   "name": "brag-document-skill",
-  "version": "0.1.1",
-  "description": "Install the brag-document skill into Claude Code, Cursor, or Codex CLI.",
+  "version": "0.2.0",
+  "description": "Install the brag-document skill into Claude Code, Cursor, Codex, Gemini, Antigravity, Windsurf, Copilot, or Goose.",
   "bin": {
     "brag-document-skill": "bin/install.mjs"
   },
@@ -15,7 +15,13 @@
     "claude-code",
     "cursor",
     "codex",
+    "gemini",
+    "antigravity",
+    "windsurf",
+    "copilot",
+    "goose",
     "skill",
+    "agentic",
     "brag-document",
     "performance-review"
   ],

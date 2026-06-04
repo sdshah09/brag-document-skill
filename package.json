@@ -1,0 +1,33 @@
+{
+  "name": "brag-document-skill",
+  "version": "0.1.0",
+  "description": "Install the brag-document skill into Claude Code, Cursor, or Codex CLI.",
+  "bin": {
+    "brag-document-skill": "bin/install.mjs"
+  },
+  "files": [
+    "bin",
+    "skills",
+    ".claude-plugin",
+    "README.md"
+  ],
+  "keywords": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "skill",
+    "brag-document",
+    "performance-review"
+  ],
+  "author": "Shaswat Shah",
+  "license": "MIT",
+  "homepage": "https://github.com/sdshah09/brag-document-skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdshah09/brag-document-skill.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "module"
+}

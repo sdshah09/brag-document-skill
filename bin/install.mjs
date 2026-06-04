@@ -78,14 +78,21 @@ ${body}`;
 }
 
 async function pickTool() {
-  if (tool) return tool;
-  if (existsSync(join(HOME, ".claude"))) return "claude-code";
-  if (existsSync(join(HOME, ".cursor"))) return "cursor";
-  if (existsSync(join(HOME, ".codex"))) return "codex";
+  if (tool) return [tool];
+  const detected = {
+    "claude-code": existsSync(join(HOME, ".claude")),
+    cursor: existsSync(join(HOME, ".cursor")),
+    codex: existsSync(join(HOME, ".codex")),
+  };
+  const mark = (k) => (detected[k] ? " (detected)" : "");
   const rl = createInterface({ input, output });
-  const ans = await rl.question("Which tool? [1] Claude Code  [2] Cursor  [3] Codex CLI: ");
+  const ans = await rl.question(
+    `Which tool?\n  [1] Claude Code${mark("claude-code")}\n  [2] Cursor${mark("cursor")}\n  [3] Codex CLI${mark("codex")}\n  [a] All three\nChoice: `
+  );
   rl.close();
-  return { 1: "claude-code", 2: "cursor", 3: "codex" }[ans.trim()] || "claude-code";
+  const choice = ans.trim().toLowerCase();
+  if (choice === "a" || choice === "all") return ["claude-code", "cursor", "codex"];
+  return [{ 1: "claude-code", 2: "cursor", 3: "codex" }[choice] || "claude-code"];
 }
 
 async function pickScope() {
@@ -101,30 +108,32 @@ async function main() {
     console.error(`SKILL.md not found at ${SRC}`);
     process.exit(1);
   }
-  tool = await pickTool();
-  const target = TARGETS[tool];
-  if (!target) {
-    console.error(`Unknown tool: ${tool}. Use claude-code | cursor | codex.`);
-    process.exit(1);
-  }
+  const tools = await pickTool();
   const scope = await pickScope();
-  const dest = target[scope]();
   const src = readFileSync(SRC, "utf8");
-  const content = target.transform(src);
 
-  mkdirSync(dirname(dest), { recursive: true });
+  for (const t of tools) {
+    const target = TARGETS[t];
+    if (!target) {
+      console.error(`Unknown tool: ${t}. Skipping.`);
+      continue;
+    }
+    const dest = target[scope]();
+    const content = target.transform(src);
+    mkdirSync(dirname(dest), { recursive: true });
 
-  if (target.appendIfExists && existsSync(dest)) {
-    const existing = readFileSync(dest, "utf8");
-    if (existing.includes("# brag-document")) {
-      console.log(`brag-document already present in ${dest} — skipping.`);
-    } else {
+    if (target.appendIfExists && existsSync(dest)) {
+      const existing = readFileSync(dest, "utf8");
+      if (existing.includes("# brag-document")) {
+        console.log(`brag-document already present in ${dest} — skipping.`);
+        continue;
+      }
       writeFileSync(dest, existing.trimEnd() + "\n\n" + content);
       console.log(`Appended brag-document to ${dest}`);
+    } else {
+      writeFileSync(dest, content);
+      console.log(`Installed brag-document (${target.label}, ${scope}) → ${dest}`);
     }
-  } else {
-    writeFileSync(dest, content);
-    console.log(`Installed brag-document (${target.label}, ${scope}) → ${dest}`);
   }
 }
 

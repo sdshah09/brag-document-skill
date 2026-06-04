@@ -1,6 +1,6 @@
 {
   "name": "brag-document-skill",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Install the brag-document skill into Claude Code, Cursor, or Codex CLI.",
   "bin": {
     "brag-document-skill": "bin/install.mjs"

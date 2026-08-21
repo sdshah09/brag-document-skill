@@ -1,7 +1,7 @@
 {
   "name": "brag-document-skill",
   "version": "0.2.0",
-  "description": "Install the brag-document skill into Claude Code, Cursor, Codex, Gemini, Antigravity, Windsurf, Copilot, or Goose.",
+  "description": "Agent skill that helps you track accomplishments and write a brag document for performance reviews and promotion cases — reconstructs forgotten work from PRs and tickets, turns 'shipped X' into impact statements, and keeps the hard-to-quantify work in. Installs into Claude Code, Cursor, Codex, Gemini, Antigravity, Windsurf, Copilot, and Goose",
   "bin": {
     "brag-document-skill": "bin/install.mjs"
   },
@@ -9,9 +9,20 @@
     "bin",
     "skills",
     ".claude-plugin",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "keywords": [
+    "brag-document",
+    "brag-doc",
+    "hype-document",
+    "performance-review",
+    "self-evaluation",
+    "promotion",
+    "career",
+    "career-development",
+    "agent-skill",
+    "agent-skills",
     "claude-code",
     "cursor",
     "codex",
@@ -20,14 +31,15 @@
     "windsurf",
     "copilot",
     "goose",
+    "ai",
+    "ai-agents",
     "skill",
-    "agentic",
-    "brag-document",
-    "performance-review"
+    "agentic"
   ],
   "author": "Shaswat Shah",
   "license": "MIT",
-  "homepage": "https://github.com/sdshah09/brag-document-skill",
+  "homepage": "https://github.com/sdshah09/brag-document-skill#readme",
+  "bugs": "https://github.com/sdshah09/brag-document-skill/issues",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sdshah09/brag-document-skill.git"

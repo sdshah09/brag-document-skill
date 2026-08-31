@@ -98,6 +98,14 @@ proud of. Include only if it feels right to them.
 
 **Sharing.** If they plan to give it to a manager or peer reviewers, reassure them this is normal and welcomed — it makes the reviewer's job dramatically easier and helps them advocate accurately. It's especially valuable across a manager transition, when a new manager has no prior visibility into the work.
 
+## APIs
+
+This skill uses no APIs. It makes no network requests, calls no external services, and exposes no endpoints. Everything happens in two places: the conversation with the user, and the Markdown file that gets written. There are no keys to set up and nothing to sign in to.
+
+## Data modeling schema
+
+This skill has no database and no formal schema. The only data structure is the brag document itself: one Markdown file organized by the headings shown in the "Document structure" section above (Goals for this year, Goals for next year, Projects, Collaboration & mentorship, Design & documentation, Company building, What I learned, Outside of work). Each section holds plain text. No fields are required, and sections that don't apply are simply removed. Nothing is stored anywhere else.
+
 ## Output format
 
 When producing or updating an actual document, write it as clean Markdown following the structure above so the user can paste it into wherever they keep it. When helping them *think* — reconstructing, sharpening impact, reflecting — stay conversational and work through it with them rather than dumping a template. Match the mode to what they actually need.
